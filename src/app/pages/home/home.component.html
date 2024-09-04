@@ -1,0 +1,35 @@
+<div class="container-fluid text-center">
+  <div class="container">
+    <h1>Pokemon de la Semana</h1>
+    <figure class="figure" style="width: 30%;">
+      <img [src]="pokemons[indicePokemonSemana] ?
+          pokemons[indicePokemonSemana].sprites.front_default :''" class="figure-img img-fluid rounded"
+        alt="Pokemon de la semana">
+      <figcaption class="figure-caption">Descripción del pokemon.</figcaption>
+    </figure>
+  </div>
+
+  <div class="container" style="width: 50%;">
+    <h1>Galería de Pokemons</h1>
+    <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-inner">
+        <div *ngFor="let pokemon of pokemons" [class]="pokemon.id==1 ? 'carousel-item active' : ' carousel-item'">
+          <img [src]="pokemon.sprites.front_default" class="d-block w-100" [alt]="pokemon.name">
+          <h5 *ngIf=" pokemon.weight >50; else elseTemplate">Es pesado</h5>
+          <ng-template #elseTemplate>
+            <h5> Es liviano</h5>
+          </ng-template>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+</div>

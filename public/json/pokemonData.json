@@ -1,0 +1,23 @@
+[
+    {
+    "id": 1,
+    "nombre": "Pikachu",
+    "peso": 6,
+    "imagen": "imagenes/pikachu.gif",
+    "tipo": 1
+    },
+    {
+    "id": 2,
+    "nombre": "Charizard",
+    "peso": 90.5,
+    "imagen": "imagenes/charizar.png",
+    "tipo": 2
+    },
+    {
+    "id": 3,
+    "nombre": "Greninja",
+    "peso": 40.0,
+    "imagen": "imagenes/greninja.png",
+    "tipo": 3
+    }
+]

@@ -1,0 +1,87 @@
+<div class="container-fluid text-center">
+  <form [formGroup]="form" (ngSubmit)="createPost()">
+    <div class="mb-3">
+      <label for="userId" class="form-label">Usuario</label>
+      <input
+        formControlName="userId"
+        type="number"
+        [class]="
+          form.get('userId')?.invalid && form.get('userId')?.touched
+            ? 'form-control is-invalid'
+            : 'form-control'
+        "
+        id="userId"
+        placeholder="1234"
+      />
+      <div class="invalid-feedback">Escoja un id de usuario</div>
+    </div>
+    <div class="mb-3">
+      <label for="title" class="form-label">Titulo</label>
+      <input
+        formControlName="title"
+        type="text"
+        [class]="
+          form.get('title')?.invalid && form.get('title')?.touched
+            ? 'form-control is-invalid'
+            : 'form-control'
+        "
+        id="title"
+        placeholder=""
+      />
+      <div class="invalid-feedback">Ingrese un titulo</div>
+    </div>
+    <div class="mb-3">
+      <label for="body" class="form-label">Post</label>
+      <textarea
+        formControlName="body"
+        [class]="
+          form.get('body')?.invalid && form.get('body')?.touched
+            ? 'form-control is-invalid'
+            : 'form-control'
+        "
+        id="body"
+        placeholder="En que estas pensando"
+      ></textarea>
+      <div class="invalid-feedback">
+        <span *ngIf="form.get('body')?.errors?.['minlength']">
+          Debe tener al menos 10 caracteres
+        </span>
+        <span *ngIf="form.get('body')?.errors?.['required']">
+          El post es obligatorio
+        </span>
+      </div>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" type="submit">Añadir post</button>
+    </div>
+  </form>
+  <h1>Listado de Posts</h1>
+  <p>{{ this.postsService.post }}</p>
+  <div class="list-group">
+    <a
+      class="list-group-item list-group-item-action"
+      aria-current="true"
+      *ngFor="let post of posts"
+    >
+      <h5 class="mb-1">{{ post.title }}</h5>
+      <p class="mb-1">{{ post.body }}</p>
+      <!-- <small>{{ post.userId }}</small> -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        style="margin-inline: 10px"
+        (click)="updatePost(post)"
+      >
+        Actualizar
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        style="margin-inline: 10px"
+        (click)="deletePost(post)"
+      >
+        Danger
+      </button>
+    </a>
+  </div>
+</div>
